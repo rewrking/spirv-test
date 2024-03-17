@@ -2,18 +2,9 @@
 	"name": "spirv-test",
 	"version": "1.0.0",
 	"targets": {
-		"spirv-test": {
-			"kind": "process",
-			"path": "glslang",
-			"arguments":[
-				"--target-env",
-				"opengl",
-				"-V100",
-				"-o",
-				"build/generic.spirv",
-				"src/generic.vert",
-				"src/generic.frag"
-			]
+		"spirv-build-all": {
+			"kind": "script",
+			"file": "scripts/build_shaders.sh"
 		}
 	}
 }

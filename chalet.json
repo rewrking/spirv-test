@@ -5,7 +5,7 @@
 		"spirv-build-all": {
 			"kind": "process",
 			"path": "ninja",
-			"arguments":[
+			"arguments": [
 				"-j",
 				"${maxJobs}",
 				"-k",

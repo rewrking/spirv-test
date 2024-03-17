@@ -7,9 +7,9 @@ layout (location = 0) in FragInput {
 } Input;
 
 layout (binding = 0) uniform sampler2D diffuse;
-layout(std140, binding = 1) uniform State {
-	int u_ColorFunction;
-};
+layout(std140, binding = 1) uniform FragmentState {
+	int ColorFunction;
+} State;
 
 layout (location = 0) out vec4 OutColor;
 
@@ -25,7 +25,7 @@ vec4 useTexture1()
 
 void main()
 {
-	switch (u_ColorFunction) {
+	switch (State.ColorFunction) {
 	case 0:
 		OutColor = useUntextured();
 		break;

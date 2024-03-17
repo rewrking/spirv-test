@@ -8,7 +8,7 @@ h_ext = h
 frag_ext = frag.glsl
 vert_ext = vert.glsl
 
-glslang_options = --quiet
+glslang_options = --quiet -Os
 
 # OpenGL
 opengl_dir = $output_dir/opengl

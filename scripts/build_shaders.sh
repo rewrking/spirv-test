@@ -6,8 +6,8 @@ output_ext=spv
 header_ext=h
 
 glsl_vert_frag() {
-	target_env=$1
-	shader_file=$2
+	shader_file=$1
+	target_env=$2
 	shader_input_files="$src_dir/$shader_file.vert.glsl $src_dir/$shader_file.frag.glsl"
 	output_dir=$build_dir/$target_env
 	header_shader_name=${shader_file}_shader_bin
@@ -17,5 +17,11 @@ glsl_vert_frag() {
 	glslang --target-env $target_env --vn $header_shader_name -o $output_dir/$shader_file.$header_ext $shader_input_files
 }
 
-glsl_vert_frag opengl generic
-glsl_vert_frag vulkan1.3 generic
+compile_supported_vert_frag() {
+	source_file_group=$1
+
+	glsl_vert_frag $source_file_group opengl
+	glsl_vert_frag $source_file_group vulkan1.3
+}
+
+compile_supported_vert_frag generic

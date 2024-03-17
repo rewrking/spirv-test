@@ -3,8 +3,19 @@
 	"version": "1.0.0",
 	"targets": {
 		"spirv-build-all": {
-			"kind": "script",
-			"file": "scripts/build_shaders.sh"
+			"kind": "process",
+			"path": "ninja",
+			"arguments":[
+				"-j",
+				"${maxJobs}",
+				"-k",
+				"0",
+				"-f",
+				"scripts/build.ninja",
+				"-d",
+				"keepdepfile",
+				"all"
+			]
 		}
 	}
 }

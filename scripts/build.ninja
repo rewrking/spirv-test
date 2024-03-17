@@ -2,6 +2,7 @@ builddir = build/shaders
 
 output_dir = shaders
 source_dir = src
+spirv_compiler = glslang
 
 spv_ext = spv
 h_ext = h
@@ -15,11 +16,11 @@ opengl_dir = $output_dir/opengl
 
 rule binary_opengl
   description = $out
-  command = glslang $glslang_options --target-env opengl -o $out $in
+  command = $spirv_compiler $glslang_options --target-env opengl -o $out $in
 
 rule header_opengl
   description = $out
-  command = glslang $glslang_options --target-env opengl --vn opengl_shader_binary -o $out $in
+  command = $spirv_compiler $glslang_options --target-env opengl --vn opengl_shader_binary -o $out $in
 
 build $opengl_dir/generic.$spv_ext: binary_opengl $source_dir/generic.$vert_ext $source_dir/generic.$frag_ext
 build $opengl_dir/generic.$h_ext: header_opengl $source_dir/generic.$vert_ext $source_dir/generic.$frag_ext
@@ -31,11 +32,11 @@ vulkan13_dir = $output_dir/vulkan1.3
 
 rule binary_vulkan1.3
   description = $out
-  command = glslang $glslang_options --target-env vulkan1.3 -o $out $in
+  command = $spirv_compiler $glslang_options --target-env vulkan1.3 -o $out $in
 
 rule header_vulkan1.3
   description = $out
-  command = glslang $glslang_options --target-env vulkan1.3 --vn vulkan_shader_binary -o $out $in
+  command = $spirv_compiler $glslang_options --target-env vulkan1.3 --vn vulkan_shader_binary -o $out $in
 
 build $vulkan13_dir/generic.$spv_ext: binary_vulkan1.3 $source_dir/generic.$vert_ext $source_dir/generic.$frag_ext
 build $vulkan13_dir/generic.$h_ext: header_vulkan1.3 $source_dir/generic.$vert_ext $source_dir/generic.$frag_ext

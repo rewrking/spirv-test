@@ -1,6 +1,6 @@
 builddir = build/shaders
 
-output_dir = shaders
+output_dir = build/shaders
 source_dir = src
 spirv_compiler = glslang
 
